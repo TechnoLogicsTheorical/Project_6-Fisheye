@@ -1,17 +1,39 @@
 function photographerFactory(data) {
-    const { name, portrait } = data;
+    const {
+        // Rénommer les propréties par le biais des alias
+        id: idPhotographer,
+        name: namePhotographer,
+        tagline,
+        
+        // Réinstancer des variables de l'objet data
+        picturePath = `assets/data/photographers/${data.portrait}`,
+        completedAddress = `${data.city}, ${data.country}`,
+        prestationPrice = `${data.price}€/jour`,
+    } = data;
 
-    const picture = `assets/photographers/${portrait}`;
 
-    function getUserCardDOM() {
+    function getPhotographerCardDOM() {
         const article = document.createElement( 'article' );
-        const img = document.createElement( 'img' );
-        img.setAttribute("src", picture)
-        const h2 = document.createElement( 'h2' );
-        h2.textContent = name;
-        article.appendChild(img);
-        article.appendChild(h2);
+        
+        const picturePhotographer = document.createElement( 'img' );
+        picturePhotographer.setAttribute("src", picturePath)
+        
+        const titleNamed = document.createElement( 'h2' );
+        titleNamed.textContent = namePhotographer;
+        
+        const sectionContent = document.createElement( 'div' );
+        sectionContent.classList.add('content-card')
+        sectionContent.innerHTML = 
+        `<address>${completedAddress}</address>
+         <p>${tagline}</p>
+         <p>${prestationPrice}</p>
+        `;
+        
+        article.appendChild(picturePhotographer);
+        article.appendChild(titleNamed);
+        article.appendChild(sectionContent);
+        
         return (article);
     }
-    return { name, picture, getUserCardDOM }
+    return { namePhotographer, picturePath, getPhotographerCardDOM }
 }
