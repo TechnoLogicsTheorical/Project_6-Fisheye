@@ -1,5 +1,15 @@
 @import url("photographer.css");
 
+:root {
+    /* Sectionning Color Declarations */
+    --main-color: #901C1C;
+    --secondary-color: #DB8876;
+    --tertiary-color: #D3573C;
+
+    --main-gray: #525252;
+    --secondary-gray: #757575;
+}
+
 body {
     font-family: "DM Sans", sans-serif;
     margin: 0;
@@ -15,7 +25,7 @@ header {
 }
 
 h1 {
-    color: #901C1C;
+    color: var(--main-color);
     margin-right: 100px;
 }
 
@@ -40,7 +50,7 @@ h1 {
 }
 
 .photographer_section article h2 {
-    color: #D3573C;
+    color: var(--tertiary-color);
     font-size: 36px;
 }
 
