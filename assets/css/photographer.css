@@ -6,6 +6,36 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
+}
+
+.photographer_informations {
+    font-weight: 400;
+}
+
+.photographer_informations h1 {
+    color: var(--tertiary-color);
+    font-size: 48px;
+    font-weight: inherit;
+    line-height: 83px;
+    margin: 0;
+}
+
+.photographer_informations address {
+    color: var(--main-color);
+    font-size: 24px;
+    font-style: normal;
+    line-height: 31px;
+}
+
+.photographer_informations p {
+    color: var(--main-gray);
+    font-size: 18px;
+    line-height: 23px;
 }
 
 .contact_button {
@@ -15,11 +45,85 @@
     padding: 11px;
     width: 170px;
     height: 70px;
-    border: none;
-    background-color: var(--main-color);
-    border-radius: 5px;
-    cursor: pointer;
+
 }
+/*
+-------------------------
+|    Embedded Medias    |
+-------------------------
+*/
+.medias-container {
+    margin: 58px auto;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px 95px;
+}
+
+.medias-container article {
+    width: 350px;
+}
+
+.medias-container article img,
+.medias-container article video {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.medias-container article div {
+    display: flex;
+    flex: none;
+    justify-content: space-between;
+    align-items: center;
+
+    color: var(--main-color);
+    font-size: 24px;
+    font-weight: 400;
+    padding: 10px 0;
+}
+
+.medias-container article div p {
+    margin: 0;
+    line-height: 31px;
+    text-overflow: ellipsis;
+    width: 280px;
+}
+
+.medias-container article div button {
+    background: none;
+    border: none;
+    font-size: inherit;
+    font-weight: 500;
+    color: inherit;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* Others Components */
+#bottom-informations {
+    position: fixed;
+    bottom: 0;
+    right: 36px;
+
+    height: 68px;
+
+    border-radius: 5px;
+    background: var(--secondary-color);
+    padding: 0 30px;
+
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 31px;
+}
+
+/*
+-----------------------
+|    Contact Modal    |
+-----------------------
+*/
 
 .modal {
     border-radius: 5px;
