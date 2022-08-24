@@ -1,3 +1,7 @@
+/**
+ * Récupère l'identifiant du photographer transmis au sein de l'URL de navigateur dans le paramètre [?id=4563]
+ * @return {number} Retourne un nombre : Ex [4563]
+ */
 function getPhotographerID() {
     let actualURL = new URL(window.location);
     // Récuperer le paramètre id fourni dans l'url
@@ -6,6 +10,11 @@ function getPhotographerID() {
     return Number(photographerID);
 }
 
+/**
+ * Affiche les données par l'appel de différents procédée factorielle de génération et de formatage de données
+ * @param {object} photographer Un objet contenant toutes les informations du Photographe
+ * @param {[object]} associedMedias Un tableau d'objet contenant tous les médias associées du Photographe
+ */
 function displayData(photographer, associedMedias) {
     const mainSection = document.getElementById( 'main' );
 
@@ -96,7 +105,6 @@ function displayData(photographer, associedMedias) {
     mainSection.after(contactModal);
 };
 
-
 async function init() {
     const PHOTOGRAPHER_ID = getPhotographerID();
 
@@ -104,9 +112,8 @@ async function init() {
     const {
         photographer: PHOTOGRAPHER,
         mediasAssocied: ASSOCIED_MEDIAS,
-    } = await getDatasWithID(PHOTOGRAPHER_ID);
+    } = await getDataWithID(PHOTOGRAPHER_ID);
 
     displayData(PHOTOGRAPHER, ASSOCIED_MEDIAS);
 };
-
 init();
