@@ -20,33 +20,56 @@ function mediaFactory(data, photographerName) {
     } = data;
 
     function dispatchWithDifferentTypeMedia() {
-        let generatedElement = null;
 
         if ( data.hasOwnProperty('image') ) {
-            const mediaPath = `${basePathSourceMedia}/_thumbnails/${parsedName}/${data.image}`
-            generatedElement = `<img src="${mediaPath}" alt="Photographie: ${title}">`
-        } else if ( data.hasOwnProperty('video') ) {
-            const mediaPath = `${basePathSourceMedia}/${parsedName}/${data.video}`
-            generatedElement = `<video muted><source src="${mediaPath}" type="video/mp4"></video>`
-        }
+            const mediaPath = `${basePathSourceMedia}/_thumbnails/${parsedName}/${data.image}`;
 
-        return generatedElement;
+            const imageElement = document.createElement( 'img' );
+            imageElement.setAttribute( 'src', mediaPath );
+            imageElement.setAttribute( 'alt', `Photographie: ${title}`);
+
+            return imageElement
+        } else if ( data.hasOwnProperty('video') ) {
+            const mediaPath = `${basePathSourceMedia}/${parsedName}/${data.video}`;
+
+            const videoElement = document.createElement( 'video' );
+            videoElement.muted = true;
+
+            const sourceMedia = document.createElement( 'source' );
+            sourceMedia.src = mediaPath;
+            sourceMedia.type = "video/mp4";
+
+            videoElement.appendChild(sourceMedia);
+
+            return videoElement;
+        }
     }
 
     function getCardDOM() {
         const mediaContainer = document.createElement( 'article' );
         mediaContainer.setAttribute( 'class', 'photographer-media');
 
-        mediaContainer.innerHTML =
-        `
-        ${dispatchWithDifferentTypeMedia()}
-        <div>
-            <p>${title}</p>
-            <button>${numberOfLikes} ❤</button>
-        </div>
-        `;
+        const embedMedia = (dispatchWithDifferentTypeMedia());
+        embedMedia.addEventListener('click', function() {
+            console.log('Perform action to open lightBox Modale')
+        });
 
-        return (mediaContainer)
+        mediaContainer.appendChild(embedMedia);
+
+        const mediaTextContainer = document.createElement('div');
+
+        const titleParagrapher = document.createElement('p');
+        titleParagrapher.textContent = title;
+
+        const buttonLikes = document.createElement('button');
+        buttonLikes.textContent = numberOfLikes + ' ❤';
+
+        mediaTextContainer.appendChild(titleParagrapher);
+        mediaTextContainer.appendChild(buttonLikes);
+
+        mediaContainer.appendChild(mediaTextContainer);
+
+        return mediaContainer;
     }
 
     return { getCardDOM }

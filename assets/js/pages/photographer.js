@@ -23,7 +23,7 @@ function displayData(photographer, associedMedias) {
     const bannerDOM = photographerModel.getBannerDOM();
     mainSection.appendChild(bannerDOM);
 
-    // Géneration du conteneur des images
+    // Géneration du conteneur des médias (images & videos)
     const mediaSectionContainer = document.createElement( 'section' );
     mediaSectionContainer.setAttribute( 'class', 'medias-container' );
 
@@ -31,7 +31,7 @@ function displayData(photographer, associedMedias) {
     associedMedias.forEach(function (mediaElement) {
         const photographerName = photographerModel.namePhotographer;
 
-        const mediaModel = mediaFactory(mediaElement, photographerName);
+        const mediaModel = mediaFactory(mediaElement, photographerName);    
         const mediaCard = mediaModel.getCardDOM()
 
         mediaSectionContainer.appendChild(mediaCard);
@@ -103,6 +103,20 @@ function displayData(photographer, associedMedias) {
     contactModal.querySelector('.modal').appendChild(formInputsContainer);
 
     mainSection.after(contactModal);
+
+    // -------------------------------------------------------------------------------------------
+    // Création de la modale de lightbox
+    const lightBoxContainer = document.createElement( 'div' );
+    lightBoxContainer.setAttribute( 'id', 'lightBox' );
+
+    lightBoxContainer.innerHTML =
+    `
+    <div class="modal">
+        <button id="lightBox-control-previous"></button>
+        <!--   Put media   -->
+        <button id="lightBox-control-next"></button>
+    </div>
+    `;
 };
 
 async function init() {
