@@ -1,77 +1,67 @@
-function mediaFactory(data, photographerName) {
-    /*
-        {
-            "id": 342550,
-            "photographerId": 82,
-            "title": "Fashion Yellow Beach",
-            "image": "Fashion_Yellow_Beach.jpg",
-            "likes": 62,
-            "date": "2011-12-08",
-            "price": 55
-        },
-     */
-    const {
-        id: imageID,
-        title,
-        likes: numberOfLikes,
-
-        parsedName = photographerName.split(' ')[0],
-        basePathSourceMedia = 'assets/data/medias',
-    } = data;
-
-    function dispatchWithDifferentTypeMedia() {
-
+class MediaFactory {
+    constructor(data) {
         if ( data.hasOwnProperty('image') ) {
-            const mediaPath = `${basePathSourceMedia}/_thumbnails/${parsedName}/${data.image}`;
-
-            const imageElement = document.createElement( 'img' );
-            imageElement.setAttribute( 'src', mediaPath );
-            imageElement.setAttribute( 'alt', `Photographie: ${title}`);
-
-            return imageElement
+            return new ImageObject(data);
         } else if ( data.hasOwnProperty('video') ) {
-            const mediaPath = `${basePathSourceMedia}/${parsedName}/${data.video}`;
-
-            const videoElement = document.createElement( 'video' );
-            videoElement.muted = true;
-
-            const sourceMedia = document.createElement( 'source' );
-            sourceMedia.src = mediaPath;
-            sourceMedia.type = "video/mp4";
-
-            videoElement.appendChild(sourceMedia);
-
-            return videoElement;
+            return new VideoObject(data);
+        } else {
+            throw 'Unknown type format';
         }
     }
+}
 
-    function getCardDOM() {
-        const mediaContainer = document.createElement( 'article' );
-        mediaContainer.setAttribute( 'class', 'photographer-media');
+class Media {
+    constructor(data) {
+        this._mediaID = data.id;
+        this._photographerID = data.photographerId;
+        this._titleMedia = data.title;
+        this._likes = data.likes;
+        this._date = data.date;
 
-        const embedMedia = (dispatchWithDifferentTypeMedia());
-        embedMedia.addEventListener('click', function() {
-            console.log('Perform action to open lightBox Modale')
-        });
+        this._basePathSourceMedia = 'assets/data/medias';
+    }
+}
 
-        mediaContainer.appendChild(embedMedia);
-
-        const mediaTextContainer = document.createElement('div');
-
-        const titleParagrapher = document.createElement('p');
-        titleParagrapher.textContent = title;
-
-        const buttonLikes = document.createElement('button');
-        buttonLikes.textContent = numberOfLikes + ' ❤';
-
-        mediaTextContainer.appendChild(titleParagrapher);
-        mediaTextContainer.appendChild(buttonLikes);
-
-        mediaContainer.appendChild(mediaTextContainer);
-
-        return mediaContainer;
+class ImageObject extends Media {
+/**
+ *
+ * @param {object} data Test
+ */
+    constructor(data) {
+        super(data);
+        this._imagePath = data.image;
     }
 
-    return { getCardDOM }
+    createElement() {
+        return `
+        <article class="photographer-media">
+            <img src="${this._basePathSourceMedia}/_thumbnails/${this._photographerID}/${this._imagePath}" alt="Photographie: ${this._titleMedia}">
+            <div>
+                <p>${this._titleMedia}</p>
+                <button>${this._likes}</button>
+            </div>
+        </article>
+        `;
+    }
+}
 
+class VideoObject extends Media {
+    constructor(data) {
+        super(data);
+        this._videoPath = data.video;
+    }
+
+    createElement() {
+        return `
+            <article class="photographer-media">
+                <video muted>
+                    <source src="${this._basePathSourceMedia}/${this._photographerID}/${this._videoPath}">
+                </video>
+                <div>
+                    <p>${this._titleMedia}</p>
+                    <button>${this._likes}</button>
+                </div>
+            </article>
+        `;
+    }
 }

@@ -193,3 +193,78 @@ form textarea {
 .contact_button.button:hover {
     border: black 1px solid;
 }
+
+/*
+------------------------
+|    LightBox Modal    |
+------------------------
+*/
+
+#lightBox {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    background: rgba(0, 0, 0, .9);
+}
+
+#lightBox .modal {
+    width: calc(100vw - 100px);
+    height: 90vh;
+
+    background: white;
+    border-radius: 0;
+
+    position: relative;
+
+    margin: 25px auto;
+    padding: 0 96px
+}
+
+#ctrl-prev, #ctrl-next, #ctrl-close {
+    width: 96px;
+    height: 96px;
+    background: url(../images/static/icons/lightBox/arrow.svg) center center no-repeat;
+
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -48px;
+}
+
+#ctrl-next {
+    right: 0;
+    left: auto;
+    transform: rotate(180deg);
+}
+
+#ctrl-close {
+    width: 72px;
+    height: 72px;
+    background: url(../images/static/icons/lightBox/close.svg) center center no-repeat;
+
+    top: 0;
+    left: auto;
+    right: 0;
+    margin-top:0;
+}
+
+#lhtBoxImageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100% - 64px);
+    width: 100%;
+}
+
+
+.closed {
+   display: none;
+}
+
+.open {
+    display: block;
+}
