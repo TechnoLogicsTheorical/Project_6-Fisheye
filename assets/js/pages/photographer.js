@@ -1,9 +1,4 @@
-// Element HTML de la page
-const mainSection = document.getElementById( 'main' );
-const mediaSectionContainer = document.createElement( 'section' );
-mediaSectionContainer.classList.add('medias-container');
-
-// -----------------------   Fonctions nécessaires   ---------------------------
+// -----------------------   Déclarations de Fonctions   ---------------------------
 /**
  * Récupère l'identifiant du photographer transmis au sein de l'URL de navigateur dans le paramètre [?id=4563]
  * @return {number} Retourne un nombre : Ex [4563]
@@ -20,81 +15,14 @@ function getPhotographerID() {
  * @param {object} photographer Un objet contenant toutes les informations du Photographe
  */
 function displayData(photographer) {
-
-    // Créer et ajouter la Bannière d'entête
-    const photographerModel = photographerFactory(photographer);
-    const bannerDOM = photographerModel.getBannerDOM();
-    mainSection.appendChild(bannerDOM);
-
-    // Créer et ajouter l'encart des informations supplémentaires
-    const extraInformationsContainer = document.createElement( 'div' );
-    extraInformationsContainer.id = 'bottom-informations';
-    extraInformationsContainer.innerHTML = `<p>${photographerModel.benefitPricePerDays}</p>`;
-    mainSection.appendChild(extraInformationsContainer);
-
-    // Création de la modale de contact
-    const contactModal = document.createElement( 'div' );
-    contactModal.id = 'contact_modal';
-
-    contactModal.innerHTML =
-    `
-        <div class="modal">
-            <header>
-                <h2>Contactez-moi<br>${photographerModel.namePhotographer}</h2>
-                <img src="assets/images/static/icons/close.svg" onclick="closeModal()" alt="Fermer la fênetre" />
-            </header>
-        </div>
-    `;
-
-    const formInputsContainer = document.createElement( 'form' );
-    formInputsContainer.innerHTML =
-    `
-    <div>
-        <label for="firstName">Prénom</label>
-        <input id="firstName" name="firstName" type="text" placeholder="John" autofocus required/>
-    </div>
-    
-    <div>
-        <label for="lastName">Nom</label>
-        <input id="lastName" name="lastName" type="text" placeholder="DOE" required/>
-    </div>
-    
-    <div>
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" placeholder="john.doe@email.com" required/>
-    </div>
-    
-    <div>
-        <label for="message">Email</label>
-        <textarea id="message" name="message" required></textarea>
-    </div>
-    
-    <button class="button contact_button" type="submit">Envoyer</button>
-    `;
-
-    formInputsContainer.addEventListener('submit', function(event){
-        event.preventDefault();
-        event.stopImmediatePropagation();
-
-        const dataForm = new FormData(formInputsContainer);
-        console.info('Affichage des données du Formulaire:')
-        console.log('______________________________________________')
-
-
-        for ( [key,value] of dataForm.entries() ) {
-            console.log('Input Formulaire:' + key, 'Valeur du champ:' + value);
-            console.log('----------------------------------------------------------------')
-        }
-    });
-
-    // Ajouter le contenu inputs dans la modal
-    contactModal.querySelector('.modal')
-        .appendChild(formInputsContainer);
-
-    mainSection.after(contactModal);
+    const bannerContainer = document.getElementById('photograph-header');
+    // Générer la Bannière d'entête
+    const photographerModel = createPhotographer(photographer);
+    bannerContainer.innerHTML = photographerModel.getBannerDOM();
 }
 
 function displayMedias(associedMedias) {
+    mediaSectionContainer.innerHTML = "";
     // Création de toutes les cartes images
     associedMedias.forEach(function (mediaElement) {
         const mediaModel = new MediaFactory(mediaElement);
@@ -105,6 +33,39 @@ function displayMedias(associedMedias) {
     mainSection.appendChild(mediaSectionContainer);
 }
 
+function initSelectButton(associedMedias) {
+    selectOptionsSort.addEventListener('change', (event) => {
+       switch (event.target.value) {
+           case 'date':
+               associedMedias.sort( (currentElement, nextElement) => {
+                   return new Date(currentElement.date) - new Date(nextElement.date);
+               });
+               displayMedias(associedMedias);
+               break;
+           case 'title':
+               associedMedias.sort( (currentElement, nextElement) => {
+                   return (currentElement.title > nextElement.title) ? 1 : -1 ;
+               });
+               displayMedias(associedMedias);
+               break;
+           case 'popularity':
+               associedMedias.sort( (currentElement, nextElement) => {
+                   return (currentElement.likes < nextElement.likes) ? 1 : -1;
+               });
+               displayMedias(associedMedias);
+               break;
+       }
+    });
+}
+
+function createEncart(benefitPricePerDays) {
+    const extraInformationsContainer = document.createElement( 'div' );
+    extraInformationsContainer.id = 'bottom-informations';
+    extraInformationsContainer.innerHTML = `<p>${benefitPricePerDays}€ / jour</p>`;
+    mainSection.appendChild(extraInformationsContainer);
+}
+
+// ____________________________________________________________________________________
 async function init() {
     const PHOTOGRAPHER_ID = getPhotographerID();
 
@@ -115,7 +76,16 @@ async function init() {
     } = await getDataWithID(PHOTOGRAPHER_ID);
 
     displayData(PHOTOGRAPHER);
+    initSelectButton(ASSOCIED_MEDIAS);
+
+    // Trie par défaut le tableau
+    ASSOCIED_MEDIAS.sort( (currentElement, nextElement) => {
+        return (currentElement.likes < nextElement.likes) ? 1 : -1;
+    });
     displayMedias(ASSOCIED_MEDIAS);
+
+    createEncart(PHOTOGRAPHER.price);
+    createModalContact(PHOTOGRAPHER.name);
 }
 
 init();

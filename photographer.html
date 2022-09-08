@@ -13,17 +13,31 @@
 		    </header>
 		    
 		    <main id="main">
-			   
+			    <section id="photograph-header" >
+				    <!-- Banner incomming in js -->
+			    </section>
+			
+			    <div class="sortButton-container">
+				    <label for="sort-selection">Trier par :</label>
+				    <select name="sort" id="sort-selection">
+					    <option value="popularity">Popularité</option>
+					    <option value="date">Date</option>
+					    <option value="title">Titre</option>>
+				    </select>
+			    </div>
+			
+			    <section id="medias-container">
+					<!-- Medias Section -->
+			    </section>
 		    </main>
-		
-			<!--	Géneration de la modale de contact gérer par le Javascript  -->
-		 
+		    
 			<!--	Dependences requises pour le fonctionnement des autres scripts	-->
 		    <script type="text/javascript" src="assets/js/utils/dataManaging.js"></script>
 		    <script type="text/javascript" src="assets/js/factories/photographer.js"></script>
 		    <script type="text/javascript" src="assets/js/factories/media.js"></script>
 		    <script type="text/javascript" src="assets/js/utils/contactForm.js"></script>
 		    <script type="text/javascript" src="assets/js/utils/lightboxModal.js"></script>
+		    <script type="text/javascript" src="assets/js/utils/constElements.js"></script>
 		    
 		    <script type="text/javascript" src="assets/js/pages/photographer.js"></script>
 	  </body>

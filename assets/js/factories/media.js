@@ -1,4 +1,9 @@
 class MediaFactory {
+    /**
+     * Classe d'usine qui permet de choisir en fonction de la donnée existance, le bonne instanciation de l'objet
+     * @param {object} data La donnée du média
+     * @return {Media} Retourne un Objet avec les propriètes et méthodes instanciées
+     */
     constructor(data) {
         if ( data.hasOwnProperty('image') ) {
             return new ImageObject(data);
@@ -23,10 +28,6 @@ class Media {
 }
 
 class ImageObject extends Media {
-/**
- *
- * @param {object} data Test
- */
     constructor(data) {
         super(data);
         this._imagePath = data.image;

@@ -1,4 +1,4 @@
-function photographerFactory(data) {
+function createPhotographer(data) {
     const {
         // Rénommer les propréties par le biais des alias
         id: idPhotographer,
@@ -45,10 +45,7 @@ function photographerFactory(data) {
     }
 
     function getBannerDOM() {
-        const bannerContainer = document.createElement( 'div' );
-        bannerContainer.classList.add( 'photograph-header' );
-
-        bannerContainer.innerHTML = `
+        return `
             <div class="photographer_informations">
                 <h1>${namePhotographer}</h1>
                 <address>${completedLocation}</address>
@@ -57,9 +54,7 @@ function photographerFactory(data) {
             <button class="button" onClick="displayModal()">Contactez-moi</button>
             <img class="profile-image" src="${picturePath}" alt="Image du Photographe: ${namePhotographer}">
         `;
-
-        return (bannerContainer);
     }
 
-    return { namePhotographer, benefitPricePerDays , getCardDOM, getBannerDOM }
+    return {getCardDOM, getBannerDOM }
 }
