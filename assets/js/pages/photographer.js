@@ -58,10 +58,11 @@ function initSelectButton(associedMedias) {
     });
 }
 
-function createEncart(benefitPricePerDays) {
+function createEncart(benefitPricePerDays, totalLikes) {
     const extraInformationsContainer = document.createElement( 'div' );
     extraInformationsContainer.id = 'bottom-informations';
-    extraInformationsContainer.innerHTML = `<p>${benefitPricePerDays}€ / jour</p>`;
+    extraInformationsContainer.innerHTML = `<p>${totalLikes} ❤</p>`;
+    extraInformationsContainer.innerHTML += `<p>${benefitPricePerDays}€ / jour</p>`;
     mainSection.appendChild(extraInformationsContainer);
 }
 
@@ -84,8 +85,11 @@ async function init() {
     });
     displayMedias(ASSOCIED_MEDIAS);
 
-    createEncart(PHOTOGRAPHER.price);
+    const totalLikes = calculateAllLikes(ASSOCIED_MEDIAS);
+    createEncart(PHOTOGRAPHER.price, totalLikes);
     createModalContact(PHOTOGRAPHER.name);
+
+    attachListener();
 }
 
 init();

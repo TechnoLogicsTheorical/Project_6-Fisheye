@@ -91,6 +91,8 @@
 
 /* Others Components */
 #bottom-informations {
+    display: flex;
+
     position: fixed;
     bottom: 0;
     right: 36px;
@@ -104,6 +106,10 @@
     font-weight: 500;
     font-size: 24px;
     line-height: 31px;
+}
+
+#bottom-informations p:first-child {
+    padding-right: 65px;
 }
 
 /* Button Filtre par trie */
