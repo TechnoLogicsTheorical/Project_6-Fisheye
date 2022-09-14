@@ -14,7 +14,7 @@ async function getRawData() {
                 cache: 'default'
             },
         };
-        let request = await fetch('/assets/data/photographers.json', requestConfig.myInit);
+        let request = await fetch('assets/data/photographers.json', requestConfig.myInit);
 
         if (request.status === 404) {
             return new Error('Echec de la récuperation des données');
