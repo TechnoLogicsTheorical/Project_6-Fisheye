@@ -1,68 +1,87 @@
 // Container
-const lightBoxContainer = document.createElement( 'div' );
-lightBoxContainer.setAttribute( 'id', 'lightBox' );
-lightBoxContainer.setAttribute( 'class', 'closed' );
-
-function closeLightBox() {
-    lightBoxContainer.classList.add('closed');
-    lightBoxContainer.classList.remove('open');
-}
-
-function openLightBox() {
-    lightBoxContainer.classList.add('open');
-    lightBoxContainer.classList.remove('closed');
-
-    LightBoxGetAllMedias();
-}
-
+const lightBoxContainer = document.querySelector( '#lightBox' );
 
 // ------------------------------------------
 //          ALL Functions LightBox
 // ------------------------------------------
-function LightBoxGetAllMedias(event) {
-    const medias = document.querySelectorAll('.photographer-media');
-        console.log(event)
-    medias.forEach(function (element) {
-    })
+function openLightBox() {
+    lightBoxContainer.classList.toggle('open');
 }
 
-function LightBoxInit() {
+function eraseAndPutMediaElement(mediaArticleElement) {
+    const element = mediaArticleElement.cloneNode(true);
+    const mediaElement = element.firstElementChild;
+    const titleMediaElement = element.querySelector('p');
 
-    const modalContainer = document.createElement( 'div' );
-    modalContainer.setAttribute('class', 'modal');
+    const mediaContainer = lightBoxContainer.querySelector('#lhtBoxMediaContainer');
+    mediaContainer.innerHTML = '';
+    mediaContainer.appendChild(mediaElement);
+    mediaContainer.appendChild(titleMediaElement);
+}
 
-    // Buttons de Controles
-    const buttonCtrlPrevious = document.createElement( 'button' );
-    buttonCtrlPrevious.setAttribute('id', 'ctrl-prev');
-    buttonCtrlPrevious.setAttribute('class', 'button');
+function previousMedia() {
+    const medias = document.querySelectorAll('.photographer-media');
+    const displayedElement = document.querySelector('#lhtBoxMediaContainer');
+    const currentElement = displayedElement.firstChild.outerHTML;
 
-    const buttonCtrlNext = document.createElement( 'button' );
-    buttonCtrlNext.setAttribute('id', 'ctrl-next');
-    buttonCtrlNext.setAttribute('class', 'button');
+    medias.forEach(function(mediaArticleElement, index) {
+        const currentMediaInArray = mediaArticleElement.firstElementChild.outerHTML;
 
-    const buttonClose = document.createElement( 'button' );
-    buttonClose.setAttribute('id', 'ctrl-close');
-    buttonClose.setAttribute('class', 'button');
+        if ( currentMediaInArray === currentElement ) {
+            if (index === 0) {
+                let lastIndex = medias.length - 1;
 
+                const nextElement = medias[lastIndex];
+                eraseAndPutMediaElement(nextElement);
+            } else {
+                const nextElement = medias[--index];
+                eraseAndPutMediaElement(nextElement);
+            }
+        }
+    });
+}
+
+function nextMedia() {
+    const medias = document.querySelectorAll('.photographer-media');
+    const displayedElement = document.querySelector('#lhtBoxMediaContainer');
+    const currentElement = displayedElement.firstElementChild.outerHTML;
+
+    medias.forEach(function(mediaArticleElement, index) {
+        const currentMediaInArray = mediaArticleElement.firstElementChild.outerHTML;
+
+        if ( currentMediaInArray === currentElement ) {
+            if (index === (medias.length - 1)) {
+                let nextElement = medias[0];
+                eraseAndPutMediaElement(nextElement);
+            } else {
+                let nextElement = medias[index + 1];
+                eraseAndPutMediaElement(nextElement);
+                return 0;
+            }
+        }
+    });
+}
+
+function initLightBox() {
     // All click Event
-    buttonClose.addEventListener('click', closeLightBox())
+    const buttonClose = document.querySelector('#ctrl-close');
+    buttonClose.addEventListener('click', openLightBox);
 
-    // Image Container
-    const imageContainer = document.createElement('div');
-    imageContainer.setAttribute('id', 'lhtBoxImageContainer');
+    const buttonPrev = document.querySelector('#ctrl-prev');
+    buttonPrev.addEventListener('click', previousMedia);
 
-    const imageElement = document.createElement('img');
-    imageElement.src = 'https://picsum.photos/200/300';
-    imageElement.alt = 'Await image';
+    const buttonNext = document.querySelector('#ctrl-next');
+    buttonNext.addEventListener('click', nextMedia);
 
-    // Regroupement des différents élements
-    modalContainer.appendChild(buttonCtrlPrevious);
-    modalContainer.appendChild(buttonCtrlNext);
-    modalContainer.appendChild(buttonClose);
-    modalContainer.appendChild(imageContainer);
+    // Recuperation des medias
+    const medias = document.querySelectorAll('.photographer-media');
+    medias.forEach(function (mediaArticleElement) {
+        // On recupere juste l'élément Image ou Vidéo
+        const mediaElement = mediaArticleElement.firstElementChild;
 
-    imageContainer.appendChild(imageElement);
-    lightBoxContainer.appendChild(modalContainer);
-
-    return lightBoxContainer;
+        mediaElement.addEventListener('click', (event) => {
+            eraseAndPutMediaElement(mediaArticleElement);
+            openLightBox();
+        });
+    })
 }

@@ -40,21 +40,20 @@ function initSelectButton(associedMedias) {
                associedMedias.sort( (currentElement, nextElement) => {
                    return new Date(currentElement.date) - new Date(nextElement.date);
                });
-               displayMedias(associedMedias);
                break;
            case 'title':
                associedMedias.sort( (currentElement, nextElement) => {
                    return (currentElement.title > nextElement.title) ? 1 : -1 ;
                });
-               displayMedias(associedMedias);
                break;
            case 'popularity':
                associedMedias.sort( (currentElement, nextElement) => {
                    return (currentElement.likes < nextElement.likes) ? 1 : -1;
                });
-               displayMedias(associedMedias);
                break;
        }
+       displayMedias(associedMedias);
+       attachListenerLikes();
     });
 }
 
@@ -89,7 +88,9 @@ async function init() {
     createEncart(PHOTOGRAPHER.price, totalLikes);
     createModalContact(PHOTOGRAPHER.name);
 
-    attachListener();
+    attachListenerLikes();
+
+    initLightBox();
 }
 
 init();

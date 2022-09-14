@@ -58,6 +58,7 @@
     height: 300px;
     object-fit: cover;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 #medias-container article div {
@@ -234,6 +235,7 @@ form textarea {
 */
 
 #lightBox {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -285,19 +287,32 @@ form textarea {
     margin-top:0;
 }
 
-#lhtBoxImageContainer {
+#lhtBoxMediaContainer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    min-height: calc(100% - 64px);
+    /*align-items: center;*/
+    height: 100%;
     width: 100%;
+
+    flex: none;
 }
 
-
-.closed {
-   display: none;
+#lhtBoxMediaContainer img,
+#lhtBoxMediaContainer video {
+    /*width: 100%;*/
+    max-height: calc(100% - 64px);
+    object-fit: cover;
+    border-radius: 5px;
 }
 
-.open {
+#lhtBoxMediaContainer p {
+    font-size: 24px;
+    color: var(--main-color);
+    margin: 0;
+    padding: 14px 0 19px 0;
+}
+
+#lightBox.open {
     display: block;
 }
