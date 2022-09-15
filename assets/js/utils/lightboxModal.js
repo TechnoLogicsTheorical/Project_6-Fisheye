@@ -4,7 +4,7 @@ const lightBoxContainer = document.querySelector( '#lightBox' );
 // ------------------------------------------
 //          ALL Functions LightBox
 // ------------------------------------------
-function openLightBox() {
+function changeStateOfLightbox() {
     lightBoxContainer.classList.toggle('open');
 }
 
@@ -65,7 +65,7 @@ function nextMedia() {
 function initLightBox() {
     // All click Event
     const buttonClose = document.querySelector('#ctrl-close');
-    buttonClose.addEventListener('click', openLightBox);
+    buttonClose.addEventListener('click', changeStateOfLightbox);
 
     const buttonPrev = document.querySelector('#ctrl-prev');
     buttonPrev.addEventListener('click', previousMedia);
@@ -81,7 +81,23 @@ function initLightBox() {
 
         mediaElement.addEventListener('click', (event) => {
             eraseAndPutMediaElement(mediaArticleElement);
-            openLightBox();
+            changeStateOfLightbox();
         });
     })
 }
+
+// ------------------------------------------
+//          LightBox Listeners
+// ------------------------------------------
+
+document.addEventListener('keydown', (event) => {
+    if (lightBoxContainer.classList.value === 'open') {
+        if (event.code === 'ArrowLeft') {
+            previousMedia();
+        } else if (event.code === 'ArrowRight') {
+            nextMedia();
+        } else if (event.code === 'Escape') {
+            changeStateOfLightbox();
+        }
+    }
+});
