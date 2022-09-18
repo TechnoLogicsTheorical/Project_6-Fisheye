@@ -73,11 +73,13 @@
     padding: 10px 0;
 }
 
-#medias-container article div p {
+#medias-container article div h2 {
     margin: 0;
     line-height: 31px;
     text-overflow: ellipsis;
     width: 280px;
+    font-size: inherit;
+    font-weight: inherit;
 }
 
 #medias-container article div button {
@@ -109,7 +111,12 @@
     line-height: 31px;
 }
 
-#bottom-informations p:first-child {
+#bottom-informations h3 {
+    font-weight: inherit;
+    font-size: inherit;
+}
+
+#bottom-informations h3:first-child {
     padding-right: 65px;
 }
 
@@ -306,8 +313,9 @@ form textarea {
     border-radius: 5px;
 }
 
-#lhtBoxMediaContainer p {
+#lhtBoxMediaContainer h2 {
     font-size: 24px;
+    font-weight: inherit;
     color: var(--main-color);
     margin: 0;
     padding: 14px 0 19px 0;

@@ -11,7 +11,7 @@ function changeStateOfLightbox() {
 function eraseAndPutMediaElement(mediaArticleElement) {
     const element = mediaArticleElement.cloneNode(true);
     const mediaElement = element.firstElementChild;
-    const titleMediaElement = element.querySelector('p');
+    const titleMediaElement = element.querySelector('h2');
 
     const mediaContainer = lightBoxContainer.querySelector('#lhtBoxMediaContainer');
     mediaContainer.innerHTML = '';

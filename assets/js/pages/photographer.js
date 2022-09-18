@@ -60,8 +60,8 @@ function initSelectButton(associedMedias) {
 function createEncart(benefitPricePerDays, totalLikes) {
     const extraInformationsContainer = document.createElement( 'div' );
     extraInformationsContainer.id = 'bottom-informations';
-    extraInformationsContainer.innerHTML = `<p>${totalLikes} ❤</p>`;
-    extraInformationsContainer.innerHTML += `<p>${benefitPricePerDays}€ / jour</p>`;
+    extraInformationsContainer.innerHTML = `<h3>${totalLikes} ❤</h3>`;
+    extraInformationsContainer.innerHTML += `<h3>${benefitPricePerDays}€ / jour</h3>`;
     mainSection.appendChild(extraInformationsContainer);
 }
 

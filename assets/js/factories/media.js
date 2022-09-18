@@ -38,7 +38,7 @@ class ImageObject extends Media {
         <article class="photographer-media">
             <img src="${this._basePathSourceMedia}/${this._photographerID}/${this._imagePath}" alt="${this._titleMedia}">
             <div>
-                <p>${this._titleMedia}</p>
+                <h2>${this._titleMedia}</h2>
                 <button>${this._likes} ♡</button>
             </div>
         </article>
@@ -59,7 +59,7 @@ class VideoObject extends Media {
                     <source src="${this._basePathSourceMedia}/${this._photographerID}/${this._videoPath}">
                 </video>
                 <div>
-                    <p>${this._titleMedia}</p>
+                    <h2>${this._titleMedia}</h2>
                     <button>${this._likes} ♡</button>
                 </div>
             </article>
