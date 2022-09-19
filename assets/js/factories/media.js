@@ -35,8 +35,8 @@ class ImageObject extends Media {
 
     createElement() {
         return `
-        <article class="photographer-media">
-            <img src="${this._basePathSourceMedia}/${this._photographerID}/${this._imagePath}" alt="${this._titleMedia}" tabindex="0">
+        <article class="photographer-media" tabindex="0">
+            <img src="${this._basePathSourceMedia}/${this._photographerID}/${this._imagePath}" alt="${this._titleMedia}">
             <div>
                 <h2>${this._titleMedia}</h2>
                 <button>${this._likes} ♡</button>
@@ -54,8 +54,8 @@ class VideoObject extends Media {
 
     createElement() {
         return `
-            <article class="photographer-media">
-                <video muted title="${this._titleMedia}" tabindex="0">
+            <article class="photographer-media" tabindex="0">
+                <video muted title="${this._titleMedia}">
                     <source src="${this._basePathSourceMedia}/${this._photographerID}/${this._videoPath}" >
                 </video>
                 <div>
