@@ -1,17 +1,22 @@
 function displayModal() {
     const modal = document.getElementById("contact_modal");
 	modal.style.display = "block";
+    modal.setAttribute('aria-hidden', 'false');
 }
 
 function closeModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
+    modal.setAttribute('aria-hidden', 'true');
+
 }
 
 function createModalContact(namePhotographer) {
     // Création de la modale de contact
     const contactModal = document.createElement( 'div' );
     contactModal.setAttribute( 'id', 'contact_modal');
+    contactModal.setAttribute('role', 'dialog');
+    contactModal.setAttribute('aria-hidden', 'true');
 
     contactModal.innerHTML =
         `

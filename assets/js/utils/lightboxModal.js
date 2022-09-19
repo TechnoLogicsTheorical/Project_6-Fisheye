@@ -1,6 +1,5 @@
 // Containers
 const lightBoxContainer = document.querySelector( '#lightBox' );
-const mainContent = document.querySelector('#main');
 
 // ------------------------------------------
 //          ALL Functions LightBox
@@ -9,10 +8,10 @@ function changeStateOfLightbox() {
     lightBoxContainer.classList.toggle('open');
     if (lightBoxContainer.getAttribute('aria-hidden') === 'true') {
         lightBoxContainer.setAttribute('aria-hidden', 'false');
-        mainContent.setAttribute('aria-hidden', 'true');
+        mainSection.setAttribute('aria-hidden', 'true');
     } else {
         lightBoxContainer.setAttribute('aria-hidden', 'true');
-        mainContent.setAttribute('aria-hidden', 'false');
+        mainSection.setAttribute('aria-hidden', 'false');
     }
 }
 

@@ -5,21 +5,23 @@
 		    <meta charset="utf-8">
 		    <link rel="icon" type="image/png" href="assets/images/static/icons/favicon.png">
 		    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-		    <title>Fisheye - photographe </title>
+		    <title>Fisheye - photographe</title>
 	  </head>
 	  <body>
 		    <header>
-			    <img src="assets/images/static/logo.png" class="logo" alt="Logo de la marque : FishEye" tabindex="0"/>
+			    <a href="index.html" title="Lien vers la page d'accueil">
+				    <img src="assets/images/static/logo.png" class="logo" alt="Logo de la marque : FishEye"/>
+			    </a>
 		    </header>
 		    
 		    <main id="main" aria-hidden="false">
-			    <section id="photograph-header" >
+			    <section id="photograph-header" role="banner" >
 				    <!-- Banner incomming in js -->
 			    </section>
 			
 			    <div class="sortButton-container">
 				    <label for="sort-selection">Trier par</label>
-				    <select name="sort" id="sort-selection" class="button" tabindex="4">
+				    <select name="sort" id="sort-selection" class="button">
 					    <option value="popularity">Popularité</option>
 					    <option value="date">Date</option>
 					    <option value="title">Titre</option>>
@@ -31,7 +33,7 @@
 			    </section>
 		    </main>
 		
-		    <div id='lightBox' aria-hidden="true">
+		    <div id='lightBox' aria-hidden="true" role="dialog">
 			    <div class='modal'>
 				    <button id="ctrl-prev" class="button">Image Précendente</button>
 				    <button id="ctrl-next" class="button">Image suivante</button>
