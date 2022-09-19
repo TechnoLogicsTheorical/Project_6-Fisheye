@@ -18,7 +18,7 @@ function createModalContact(namePhotographer) {
         <div class="modal">
             <header>
                 <h2>Contactez-moi<br>${namePhotographer}</h2>
-                <img src="assets/images/static/icons/close.svg" onclick="closeModal()" />
+                <img src="assets/images/static/icons/close.svg" onclick="closeModal()" alt="Fermer la modale de contact"/>
             </header>
         </div>
     `;

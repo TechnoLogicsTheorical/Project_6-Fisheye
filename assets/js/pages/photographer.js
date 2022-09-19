@@ -54,6 +54,7 @@ function initSelectButton(associedMedias) {
        }
        displayMedias(associedMedias);
        attachListenerLikes();
+       initLightBox();
     });
 }
 

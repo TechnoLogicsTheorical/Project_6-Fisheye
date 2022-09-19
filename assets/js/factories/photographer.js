@@ -46,13 +46,13 @@ function createPhotographer(data) {
 
     function getBannerDOM() {
         return `
-            <div class="photographer_informations">
+            <div class="photographer_informations" tabindex="1">
                 <h1>${namePhotographer}</h1>
                 <address>${completedLocation}</address>
                 <p>${tagline}</p>
             </div>
-            <button class="button" onClick="displayModal()">Contactez-moi</button>
-            <img class="profile-image" src="${picturePath}" alt="Image du Photographe: ${namePhotographer}">
+            <button class="button" onClick="displayModal()" tabindex="2">Contactez-moi</button>
+            <img class="profile-image" src="${picturePath}" alt="Image du Photographe: ${namePhotographer}" tabindex="3">
         `;
     }
 
