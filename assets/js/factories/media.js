@@ -55,7 +55,7 @@ class VideoObject extends Media {
     createElement() {
         return `
             <article class="photographer-media" tabindex="0">
-                <video muted title="${this._titleMedia}">
+                <video muted autoplay loop title="${this._titleMedia}">
                     <source src="${this._basePathSourceMedia}/${this._photographerID}/${this._videoPath}" >
                 </video>
                 <div>
