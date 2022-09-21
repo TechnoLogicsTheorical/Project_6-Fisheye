@@ -66,6 +66,11 @@ function createEncart(benefitPricePerDays, totalLikes) {
     mainSection.appendChild(extraInformationsContainer);
 }
 
+function changeTitlePage(photographerName) {
+    const baseTitle = 'FishEye - ';
+    document.title = baseTitle + photographerName;
+}
+
 // ____________________________________________________________________________________
 async function init() {
     const PHOTOGRAPHER_ID = getPhotographerID();
@@ -76,6 +81,7 @@ async function init() {
         mediasAssocied: ASSOCIED_MEDIAS,
     } = await getDataWithID(PHOTOGRAPHER_ID);
 
+    changeTitlePage(PHOTOGRAPHER.name);
     displayData(PHOTOGRAPHER);
     initSelectButton(ASSOCIED_MEDIAS);
 
