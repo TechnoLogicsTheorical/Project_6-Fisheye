@@ -17,7 +17,7 @@ function getPhotographerID() {
 function displayData(photographer) {
     const bannerContainer = document.getElementById('photograph-header');
     // Générer la Bannière d'entête
-    const photographerModel = createPhotographer(photographer);
+    const photographerModel = new Photographer(photographer);
     bannerContainer.innerHTML = photographerModel.getBannerDOM();
 }
 

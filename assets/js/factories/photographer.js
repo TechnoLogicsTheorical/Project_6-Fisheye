@@ -1,60 +1,41 @@
-function createPhotographer(data) {
-    const {
-        // Rénommer les propréties par le biais des alias
-        id: idPhotographer,
-        name: namePhotographer,
-        tagline,
-        
-        // Réinstancer des variables de l'objet data
-        picturePath = `assets/data/photographers/${data.portrait}`,
-        completedLocation = `${data.city}, ${data.country}`,
-        benefitPricePerDays = `${data.price}€/jour`,
-        profileURI = 'photographer.html?id=' + idPhotographer,
-    } = data;
+class Photographer {
+    constructor(data) {
+        this._id = data.id;
+        this._name = data.name;
+        this._tagLine = data.tagline;
+        this._price = data.price;
 
-
-    function getCardDOM() {
-        const article = document.createElement( 'article' );
-        // Ajouter le système de navigation entre la page d'accueil et la page photographer
-        const linkCardProfile = document.createElement( 'a' );
-        linkCardProfile.href = profileURI;
-        
-        const picturePhotographer = document.createElement( 'img' );
-        picturePhotographer.setAttribute("src", picturePath);
-        picturePhotographer.setAttribute("alt", 'Photographe: ' + namePhotographer);
-        picturePhotographer.setAttribute('class', 'profile-image');
-        
-        const titleNamed = document.createElement( 'h2' );
-        titleNamed.textContent = namePhotographer;
-        
-        linkCardProfile.appendChild(picturePhotographer);
-        linkCardProfile.appendChild(titleNamed);
-        
-        const sectionContent = document.createElement( 'div' );
-        sectionContent.classList.add('content-card')
-        sectionContent.innerHTML = 
-        `<address>${completedLocation}</address>
-         <p>${tagline}</p>
-         <p aria-label="${data.price}€ par jour">${benefitPricePerDays}</p>
-        `;
-        
-        article.appendChild(linkCardProfile);
-        article.appendChild(sectionContent);
-        
-        return (article);
+        this._profileURI = 'photographer.html?id=' + this._id;
+        this._picturePath = `assets/data/photographers/${data.portrait}`;
+        this._completedLocation = `${data.city}, ${data.country}`;
+        this._benefitPricePerDays = `${this._price}€/jour`;
     }
 
-    function getBannerDOM() {
+    getCardDOM() {
+        return `
+            <article>
+                <a href="${this._profileURI}" tabindex="0">
+                    <img class="profile-image" src="${this._picturePath}" alt="Photographe: ${this._name}">
+                    <h2>${this._name}</h2>
+                </a>
+                <div class="content-card" aria-label="Informations du Photographe" role="complementary">
+                    <address aria-label="Localisation" tabindex="0">${this._completedLocation}</address>
+                    <p aria-label="Slogan" tabindex="0">${this._tagLine}</p>
+                    <p aria-label="Tarif Journalier de ${this._price}€ par jour" tabindex="0">${this._benefitPricePerDays}</p>
+                </div>
+            </article>
+        `;
+    }
+
+    getBannerDOM() {
         return `
             <div class="photographer_informations" tabindex="0">
-                <h1>${namePhotographer}</h1>
-                <address>${completedLocation}</address>
-                <p>${tagline}</p>
+                <h1>${this._name}</h1>
+                <address>${this._completedLocation}</address>
+                <p>${this._tagLine}</p>
             </div>
             <button class="button" aria-label="Ouvrir la fenêtre de Contact" onClick="displayModal()">Contactez-moi</button>
-            <img class="profile-image" src="${picturePath}" alt="Image du Photographe: ${namePhotographer}" tabindex="0">
+            <img class="profile-image" src="${this._picturePath}" alt="Image du Photographe: ${this._name}" tabindex="0">
         `;
     }
-
-    return {getCardDOM, getBannerDOM }
 }
