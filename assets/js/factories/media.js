@@ -35,11 +35,11 @@ class ImageObject extends Media {
 
     createElement() {
         return `
-        <article class="photographer-media" tabindex="0">
-            <img src="${this._basePathSourceMedia}/${this._photographerID}/${this._imagePath}" alt="${this._titleMedia}">
+        <article class="photographer-media" >
+            <img src="${this._basePathSourceMedia}/${this._photographerID}/${this._imagePath}" alt="${this._titleMedia}" tabindex="0">
             <div>
-                <h2>${this._titleMedia}</h2>
-                <button>${this._likes} ♡</button>
+                <h2 tabindex="0" aria-label="Titre du média : ${this._titleMedia}">${this._titleMedia}</h2>
+                <button aria-label="${this._likes} likes" tabindex="0">${this._likes} ♡</button>
             </div>
         </article>
         `;
@@ -55,12 +55,12 @@ class VideoObject extends Media {
     createElement() {
         return `
             <article class="photographer-media" tabindex="0">
-                <video muted autoplay loop title="${this._titleMedia}">
+                <video muted autoplay loop title="${this._titleMedia}" aria-label="Un média vidéo" tabindex="0">
                     <source src="${this._basePathSourceMedia}/${this._photographerID}/${this._videoPath}" >
                 </video>
                 <div>
-                    <h2>${this._titleMedia}</h2>
-                    <button>${this._likes} ♡</button>
+                    <h2 tabindex="0" aria-label="Titre du média : ${this._titleMedia}">${this._titleMedia}</h2>
+                    <button aria-label="${this._likes} likes" tabindex="0">${this._likes} ♡</button>
                 </div>
             </article>
         `;

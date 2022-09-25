@@ -16,8 +16,8 @@
 			    </a>
 		    </header>
 		    
-		    <main id="main" aria-hidden="false">
-			    <section id="photograph-header" role="banner" >
+		    <main id="main" role="main" aria-hidden="false">
+			    <section id="photograph-header" role="banner" aria-label="La bannière de photographe comportant toutes ses informations" >
 				    <!-- Banner incomming in js -->
 			    </section>
 			
@@ -30,14 +30,14 @@
 				    </select>
 			    </div>
 			
-			    <section id="medias-container">
+			    <section id="medias-container" role="region">
 					<!-- Medias Section -->
 			    </section>
 		    </main>
 		
 		    <div id='lightBox' aria-hidden="true" role="dialog">
 			    <div class='modal'>
-				    <button id="ctrl-prev" class="button">Image Précendente</button>
+				    <button id="ctrl-prev" class="button">Image précédente</button>
 				    <button id="ctrl-next" class="button">Image suivante</button>
 				    <button id="ctrl-close" class="button">Fermer la modale</button>
 				
@@ -57,7 +57,6 @@
 		    
 		    <script type="text/javascript" src="assets/js/utils/constElements.js"></script>
 		    <script type="text/javascript" src="assets/js/utils/likesManaging.js"></script>
-		
 		
 		    <script type="text/javascript" src="assets/js/pages/photographer.js"></script>
 	  </body>

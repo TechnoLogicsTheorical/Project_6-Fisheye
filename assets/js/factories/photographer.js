@@ -20,9 +20,9 @@ function createPhotographer(data) {
         linkCardProfile.href = profileURI;
         
         const picturePhotographer = document.createElement( 'img' );
-        picturePhotographer.setAttribute("src", picturePath)
-        picturePhotographer.setAttribute("alt", 'Photographe: ' + namePhotographer)
-        picturePhotographer.setAttribute('class', 'profile-image')
+        picturePhotographer.setAttribute("src", picturePath);
+        picturePhotographer.setAttribute("alt", 'Photographe: ' + namePhotographer);
+        picturePhotographer.setAttribute('class', 'profile-image');
         
         const titleNamed = document.createElement( 'h2' );
         titleNamed.textContent = namePhotographer;
@@ -35,7 +35,7 @@ function createPhotographer(data) {
         sectionContent.innerHTML = 
         `<address>${completedLocation}</address>
          <p>${tagline}</p>
-         <p>${benefitPricePerDays}</p>
+         <p aria-label="${data.price}€ par jour">${benefitPricePerDays}</p>
         `;
         
         article.appendChild(linkCardProfile);
@@ -51,7 +51,7 @@ function createPhotographer(data) {
                 <address>${completedLocation}</address>
                 <p>${tagline}</p>
             </div>
-            <button class="button" onClick="displayModal()">Contactez-moi</button>
+            <button class="button" aria-label="Ouvrir la fenêtre de Contact" onClick="displayModal()">Contactez-moi</button>
             <img class="profile-image" src="${picturePath}" alt="Image du Photographe: ${namePhotographer}" tabindex="0">
         `;
     }

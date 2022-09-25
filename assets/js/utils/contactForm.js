@@ -3,12 +3,16 @@ function displayModal() {
 	modal.style.display = "block";
     modal.setAttribute('aria-hidden', 'false');
     mainSection.setAttribute('aria-hidden', 'true');
+
+    const firstInput = modal.querySelector('input:first-of-type');
+    firstInput.focus();
 }
 
 function closeModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
     modal.setAttribute('aria-hidden', 'true');
+    modal.setAttribute('role', 'dialog');
     mainSection.setAttribute('aria-hidden', 'false');
 }
 
@@ -34,22 +38,22 @@ function createModalContact(namePhotographer) {
         `
     <div>
         <label for="firstName">Prénom</label>
-        <input id="firstName" name="firstName" type="text" placeholder="John" autofocus required/>
+        <input id="firstName" name="firstName" type="text" placeholder="John" autofocus required aria-required="true"/>
     </div>
     
     <div>
         <label for="lastName">Nom</label>
-        <input id="lastName" name="lastName" type="text" placeholder="DOE" required/>
+        <input id="lastName" name="lastName" type="text" placeholder="DOE" required aria-required="true"/>
     </div>
     
     <div>
         <label for="email">Email</label>
-        <input id="email" name="email" type="email" placeholder="john.doe@email.com" required/>
+        <input id="email" name="email" type="email" placeholder="john.doe@email.com" required aria-required="true"/>
     </div>
     
     <div>
         <label for="message">Email</label>
-        <textarea id="message" name="message" required></textarea>
+        <textarea id="message" name="message" required aria-required="true"></textarea>
     </div>
     
     <button class="button contact_button" type="submit">Envoyer</button>

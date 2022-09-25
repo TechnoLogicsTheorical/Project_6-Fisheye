@@ -9,6 +9,9 @@ function changeStateOfLightbox() {
     if (lightBoxContainer.getAttribute('aria-hidden') === 'true') {
         lightBoxContainer.setAttribute('aria-hidden', 'false');
         mainSection.setAttribute('aria-hidden', 'true');
+
+        const buttonNext = document.querySelector('#ctrl-next');
+        buttonNext.focus();
     } else {
         lightBoxContainer.setAttribute('aria-hidden', 'true');
         mainSection.setAttribute('aria-hidden', 'false');
@@ -89,6 +92,13 @@ function initLightBox() {
         mediaElement.addEventListener('click', (event) => {
             eraseAndPutMediaElement(mediaArticleElement);
             changeStateOfLightbox();
+        });
+
+        mediaElement.addEventListener('keydown', (event) => {
+            if (event.code === 'Enter') {
+                eraseAndPutMediaElement(mediaArticleElement);
+                changeStateOfLightbox();
+            }
         });
     })
 }

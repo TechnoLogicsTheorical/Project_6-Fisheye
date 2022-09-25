@@ -7,7 +7,7 @@ function calculateAllLikes(associedMedias) {
 }
 
 function increaseTotalLikesEncart() {
-    const totalLikesElement = document.querySelector('#bottom-informations p:first-child');
+    const totalLikesElement = document.querySelector('#bottom-informations h3:first-child');
     let likes = totalLikesElement.textContent.split(' ')[0];
     likes = Number(likes);
     likes++;
@@ -16,7 +16,7 @@ function increaseTotalLikesEncart() {
 }
 
 function decreaseTotalLikesEncart() {
-    const totalLikesElement = document.querySelector('#bottom-informations p:first-child');
+    const totalLikesElement = document.querySelector('#bottom-informations h3:first-child');
     let likes = totalLikesElement.textContent.split(' ')[0];
     likes = Number(likes);
     likes--;
