@@ -16,6 +16,10 @@ function closeModal() {
     mainSection.setAttribute('aria-hidden', 'false');
 }
 
+/**
+ * Permet de créer la modale/popup de contact HTML
+ * @param namePhotographer Nécessite d'avoir le nom et prénom actuelle du Photographe
+ */
 function createModalContact(namePhotographer) {
     // Création de la modale de contact
     const contactModal = document.createElement( 'div' );

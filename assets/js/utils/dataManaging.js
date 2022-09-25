@@ -27,7 +27,7 @@ async function getRawData() {
 }
 
 /**
- * Récupére seulement les données de tous les photographes
+ * Récupére uniquement les données de tous les photographes
  * @return {Promise<[object]>} Renvoie un tableau d'objet contenant tous les photographes
  */
 async function getAllPhotographers() {

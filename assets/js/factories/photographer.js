@@ -1,4 +1,11 @@
+/**
+ * @classdesc Classe d'un photographe, avec des propriétes privées et donnant accès à des méthodes spécifiques
+ */
 class Photographer {
+    /**
+     * @param {object} data Un objet avec ses propriétes brutes 
+     * @return {object} Renvoie les méthodes de l'objet instancié.
+     */
     constructor(data) {
         this._id = data.id;
         this._name = data.name;
@@ -11,6 +18,10 @@ class Photographer {
         this._benefitPricePerDays = `${this._price}€/jour`;
     }
 
+    /**
+     * Permet de récupérer la carte formatée pour la page d'accueil
+     * @return {HTMLElement} Retourne une chaîne de caractére formatée
+     */
     getCardDOM() {
         return `
             <article>
@@ -27,6 +38,10 @@ class Photographer {
         `;
     }
 
+    /**
+     * @function Permet de récupérer la bannière formatée pour la page des photographes
+     * @return {HTMLElement} Retourne une chaîne de caractére formatée
+     */
     getBannerDOM() {
         return `
             <div class="photographer_informations" tabindex="0">
