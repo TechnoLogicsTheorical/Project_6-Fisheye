@@ -96,6 +96,8 @@ function initLightBox() {
 
         mediaElement.addEventListener('keydown', (event) => {
             if (event.code === 'Enter') {
+                event.preventDefault();
+                event.stopImmediatePropagation();
                 eraseAndPutMediaElement(mediaArticleElement);
                 changeStateOfLightbox();
             }

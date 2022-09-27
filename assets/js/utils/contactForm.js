@@ -32,7 +32,7 @@ function createModalContact(namePhotographer) {
         <div class="modal">
             <header>
                 <h2>Contactez-moi<br>${namePhotographer}</h2>
-                <img src="assets/images/static/icons/close.svg" onclick="closeModal()" alt="Fermer la modale de contact"/>
+                <img src="assets/images/static/icons/close.svg" onclick="closeModal()" alt="Fermer la modale de contact" tabindex="0"/>
             </header>
         </div>
     `;
@@ -56,7 +56,7 @@ function createModalContact(namePhotographer) {
     </div>
     
     <div>
-        <label for="message">Email</label>
+        <label for="message">Message</label>
         <textarea id="message" name="message" required aria-required="true"></textarea>
     </div>
     
@@ -82,4 +82,20 @@ function createModalContact(namePhotographer) {
     contactModal.querySelector('.modal').appendChild(formInputsContainer);
 
     mainSection.after(contactModal);
+    attachClosedModalEvents();
+}
+
+function attachClosedModalEvents() {
+    const contactModal = document.getElementById("contact_modal");
+    contactModal.addEventListener('keydown', function (event){
+        if (event.code === 'Escape') {
+            closeModal();
+        }
+    });
+    const imgClosedImg = contactModal.querySelector('img');
+    imgClosedImg.addEventListener('keydown', (event) => {
+        if (event.code === 'Enter') {
+            closeModal();
+        }
+    });
 }
